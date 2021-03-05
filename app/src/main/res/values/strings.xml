@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SOS Alerts</string>
+
+    <string name="title_activity_maps">Live Map</string>
+    <string name="title_activity_contacts">Emergency Contacts</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_news">News Feed</string>
+    <string name="title_activity_weather">Local Weather</string>
+
+
+</resources>

@@ -44,42 +44,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/home" />
+            app:srcCompat="@drawable/icons8home24" />
 
         <ImageButton
             android:id="@+id/settingsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/settings" />
+            app:srcCompat="@drawable/icons8settings24" />
 
         <ImageButton
             android:id="@+id/contactsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/contacts" />
+            app:srcCompat="@drawable/icons8contacts24" />
 
         <ImageButton
             android:id="@+id/mapsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/map" />
+            app:srcCompat="@drawable/icons8map24" />
 
         <ImageButton
             android:id="@+id/newsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/info" />
+            app:srcCompat="@drawable/icons8news24" />
 
         <ImageButton
             android:id="@+id/weatherBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@drawable/weather" />
+            app:srcCompat="@drawable/icons8cloud24" />
     </LinearLayout>
 
 </LinearLayout>

@@ -64,8 +64,6 @@ public class NewsActivity extends AppCompatActivity {
         mapsBtn = (ImageButton) findViewById(R.id.mapsBtn);
         weatherBtn = (ImageButton) findViewById(R.id.weatherBtn);
 
-
-
         // Check Google Services
         checkApiAvail();
 
@@ -87,8 +85,6 @@ public class NewsActivity extends AppCompatActivity {
         } else {
             Toast.makeText(NewsActivity.this, "Change Permissions Available", Toast.LENGTH_SHORT).show();
         }
-
-
 
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -142,11 +138,6 @@ public class NewsActivity extends AppCompatActivity {
         new MyTask().execute();
 
         System.out.println(responseStr);
-
-
-
-
-
 
     }
 
@@ -238,7 +229,7 @@ public class NewsActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             URL url;
             try {
-                url = new URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=michigan&api-key=nENAki5mQZVtYtXhFLpGuxD1CV6YzMwY");
+                url = new URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=&api-key=nENAki5mQZVtYtXhFLpGuxD1CV6YzMwY");
                 URLConnection myURLConnection = url.openConnection();
 
                 InputStream myInputStream = myURLConnection.getInputStream();
@@ -313,7 +304,7 @@ public class NewsActivity extends AppCompatActivity {
 
 
 
-            for (int i = 0; i < numResults - 1; i++) {
+            for (int i = 0; i < numResults ; i++) {
                 try {
                     newsArr[0][i] = (jsonArr[i].getString("abstract"));
                     newsArr[1][i] = (jsonArr[i].getString("web_url"));
@@ -335,7 +326,6 @@ public class NewsActivity extends AppCompatActivity {
                 for (int j = 0; j < 3; j++) {
                     record += (newsArr[j][i] + "\n\n");
                 }
-
                     myArrayList.add(record);
             }
 

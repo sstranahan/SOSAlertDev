@@ -24,10 +24,33 @@
         android:shadowDy="4"
         android:shadowRadius="4" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Enter Contact Name Below" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="536dp"
-        android:orientation="vertical" />
+        android:orientation="vertical">
+
+        <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.sosalertdev.ContactsFragment">
+
+
+        </fragment>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

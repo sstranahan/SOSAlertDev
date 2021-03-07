@@ -1,10 +1,30 @@
 package com.example.sosalertdev;
 
 public class NewsItem {
-    String abs;
-    String url;
-    String snippet;
-    String leadPar;
+    public String abs;
+    public String url;
+    public String snippet;
+    public String leadPar;
+    public String imgURL;
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
+
+    public NewsItem() {
+    }
+
+    public NewsItem(String abs, String url, String snippet, String leadPar, String imgURL) {
+        this.abs = abs;
+        this.url = url;
+        this.snippet = snippet;
+        this.leadPar = leadPar;
+        this.imgURL = imgURL;
+    }
 
     public String getLeadPar() {
         return leadPar;

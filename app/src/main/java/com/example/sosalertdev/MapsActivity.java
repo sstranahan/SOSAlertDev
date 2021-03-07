@@ -14,6 +14,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PointOfInterest;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -25,6 +26,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton weatherBtn;
 
     private GoogleMap mMap;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +120,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setBuildingsEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
+        GoogleMap.OnMarkerClickListener myMarkerListener = null;
+        mMap.setOnMarkerClickListener(myMarkerListener);
+
         LatLng placeLocation = null;
+
+
 
         while (placeLocation == null) {
             placeLocation = MainActivity.getLatLng();
@@ -131,5 +138,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.moveCamera(CameraUpdateFactory.newLatLng(placeLocation));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 1000, null);
         }
+
+        setPoiClick(mMap);
+
     }
+
+    private void setPoiClick(final GoogleMap map) {
+
+        map.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
+            @Override
+            public void onPoiClick(PointOfInterest poi) {
+                Marker poiMarker = mMap.addMarker(new MarkerOptions()
+                        .position(poi.latLng)
+                        .title(poi.name));
+
+                poiMarker.showInfoWindow();
+            }
+        });
+
+    }
+
+
 }

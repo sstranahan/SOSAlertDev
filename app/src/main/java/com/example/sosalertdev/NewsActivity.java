@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,12 +44,10 @@ public class NewsActivity extends AppCompatActivity {
     ImageButton newsBtn;
     ImageButton mapsBtn;
     ImageButton weatherBtn;
-
-    JSONObject myJSONObject;
+    ListView lv;
 
     static int googleAvail;
 
-    static TextView textView;
 
     static String responseStr;
 
@@ -63,6 +62,7 @@ public class NewsActivity extends AppCompatActivity {
         newsBtn = (ImageButton) findViewById(R.id.newsBtn);
         mapsBtn = (ImageButton) findViewById(R.id.mapsBtn);
         weatherBtn = (ImageButton) findViewById(R.id.weatherBtn);
+        lv = (ListView) findViewById(R.id.LV);
 
         // Check Google Services
         checkApiAvail();
@@ -155,73 +155,6 @@ public class NewsActivity extends AppCompatActivity {
         }
     }
 
-//    class APIClient extends AsyncTask<Void, Void, Void> {
-//
-//        URL myUrl;
-//        URLConnection myUrlConnection;
-//         JSONObject myJsonObject;
-//        java.io.InputStream myInputStream = null;
-//        String line, str;
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//
-//            NewsActivity.responseStr = str;
-//            super.onPostExecute(aVoid);
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//
-//            try {
-//                myUrl = new URL("https://newsapi.org/v2/everything?q=bitcoin&apiKey=2ad130f782ac4c8ea47427d709022569");
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-//            }
-//
-//            URLConnection myUrlConnection = null;
-//            try {
-//                myUrlConnection = myUrl.openConnection();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//
-//            }
-//
-//            try {
-//                myInputStream = myUrlConnection.getInputStream();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            InputStreamReader myInputStreamReader;
-//            myInputStreamReader = new InputStreamReader(myInputStream);
-//
-//            BufferedReader in = new BufferedReader(myInputStreamReader);
-//
-//            str = "";
-//
-//            System.out.print("\n");
-//
-//            try {
-//                while ((line = in.readLine()) != null)
-//                    str += line;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            NewsActivity.responseStr = str;
-//
-//            try {
-//                myJsonObject = new JSONObject(str);
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//            return null;
-//
-//        }
-//    }
-
     private class MyTask extends AsyncTask<Void, Void, Void>{
         String result, str, line;
         int statInt;
@@ -229,7 +162,8 @@ public class NewsActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             URL url;
             try {
-                url = new URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=&api-key=nENAki5mQZVtYtXhFLpGuxD1CV6YzMwY");
+                //url = new URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?fq=glocations:(\"DETROIT\")&api-key=nENAki5mQZVtYtXhFLpGuxD1CV6YzMwY");
+                url = new URL("https://api.nytimes.com/svc/search/v2/articlesearch.json?q=michigan&api-key=nENAki5mQZVtYtXhFLpGuxD1CV6YzMwY");
                 URLConnection myURLConnection = url.openConnection();
 
                 InputStream myInputStream = myURLConnection.getInputStream();
@@ -291,57 +225,96 @@ public class NewsActivity extends AppCompatActivity {
                 }
             }
 
-            String[] abstracts = new String[numResults];
-            String[] urls = new String[numResults];
+            ArrayList<NewsItem> newsArr = new ArrayList<>();
 
-            String[] pars = new String[numResults];
+            try {
+                for (int i = 0; i < numResults ; i++) {
+//                    newsArr[i].abs = jsonArr[i].getString("abstract");
+//                    newsArr[i].snippet = jsonArr[i].getString("snippet");
+//                    newsArr[i].url = jsonArr[i].getString("web_url");
+//                    newsArr[i].leadPar = jsonArr[i].getString("lead_paragraph");
 
-            String[][] newsArr = new String[3][numResults];
+                    JSONArray multiArr = jsonArr[i].getJSONArray("multimedia");
+                    JSONObject imgObj = multiArr.getJSONObject(0);
 
-            newsArr[0] = abstracts;
-            newsArr[1] = urls;
-            newsArr[2] = pars;
+                    NewsItem tempNewsObj = new NewsItem(jsonArr[i].getString("abstract"),
+                            jsonArr[i].getString("web_url"),jsonArr[i].getString("snippet"),
+                            jsonArr[i].getString("lead_paragraph"),"https://www.nytimes.com/" + imgObj.getString("url"));
 
+                    newsArr.add(tempNewsObj);
 
-
-            for (int i = 0; i < numResults ; i++) {
-                try {
-                    newsArr[0][i] = (jsonArr[i].getString("abstract"));
-                    newsArr[1][i] = (jsonArr[i].getString("web_url"));
-                    newsArr[2][i] = (jsonArr[i].getString("lead_paragraph"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    System.out.println();
                 }
-
+            } catch (JSONException e){
+                e.printStackTrace();
             }
 
-            System.out.println("" + numResults);
+            MyListViewAdapter adapter = new MyListViewAdapter(getApplicationContext(), newsArr);
 
-            ArrayList<String> myArrayList = new ArrayList<String>();
+            lv.setAdapter(adapter);
 
-            for (int i = 0; i < numResults ; i++) {
-
-                String record = "";
-
-                for (int j = 0; j < 3; j++) {
-                    record += (newsArr[j][i] + "\n\n");
-                }
-                    myArrayList.add(record);
-            }
-
-            ArrayAdapter<String> myAdapter;
-
-            ListView myListView = (ListView) findViewById(R.id.LV);
-            myAdapter = new
-                    ArrayAdapter<String>(NewsActivity.this,R.layout.my_text_view,myArrayList);
-            myListView.setAdapter(myAdapter);
-
-            myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Log.d("ME", "pos" + position);
+                    NewsItem newsItem = newsArr.get(position);
+
+                    Snackbar.make(view, newsItem.getSnippet()+"\n"+newsItem.getLeadPar(), Snackbar.LENGTH_LONG)
+                            .setAction("No action", null).show();
                 }
             });
+
+
+//            String[] abstracts = new String[numResults];
+//            String[] urls = new String[numResults];
+//
+//            String[] pars = new String[numResults];
+//
+//            String[][] newsArr = new String[3][numResults];
+//
+//            newsArr[0] = abstracts;
+//            newsArr[1] = urls;
+//            newsArr[2] = pars;
+//
+//
+//
+//            for (int i = 0; i < numResults ; i++) {
+//                try {
+//                    newsArr[0][i] = (jsonArr[i].getString("abstract"));
+//                    newsArr[1][i] = (jsonArr[i].getString("web_url"));
+//                    newsArr[2][i] = (jsonArr[i].getString("lead_paragraph"));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//
+//            System.out.println("" + numResults);
+//
+//            ArrayList<String> myArrayList = new ArrayList<String>();
+//
+//            for (int i = 0; i < numResults ; i++) {
+//
+//                String record = "";
+//
+//                for (int j = 0; j < 3; j++) {
+//                    record += (newsArr[j][i] + "\n\n");
+//                }
+//                    myArrayList.add(record);
+//            }
+//
+//            ArrayAdapter<String> myAdapter;
+//
+//            ListView myListView = (ListView) findViewById(R.id.LV);
+//            myAdapter = new
+//                    ArrayAdapter<String>(NewsActivity.this,R.layout.my_text_view,myArrayList);
+//            myListView.setAdapter(myAdapter);
+//
+//            myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    Log.d("ME", "pos" + position);
+//                }
+//            });
 
 
             super.onPostExecute(aVoid);

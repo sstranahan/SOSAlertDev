@@ -37,7 +37,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="473dp"
+        android:layout_height="532dp"
         android:orientation="vertical">
 
         <Button
@@ -45,11 +45,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:text="Search Contacts"
-            android:layout_marginTop="420dp"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="470dp"
             android:layout_marginRight="20dp"
-            android:backgroundTint="@color/rich_blue"/>
+            android:backgroundTint="@color/rich_blue"
+            android:text="Search Contacts" />
     </LinearLayout>
 
     <LinearLayout

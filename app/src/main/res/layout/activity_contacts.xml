@@ -37,19 +37,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="536dp"
+        android:layout_height="473dp"
         android:orientation="vertical">
 
-        <fragment
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/fragment_container_view"
+        <Button
+            android:id="@+id/searchButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:name="com.example.sosalertdev.ContactsFragment">
-
-
-        </fragment>
-
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Search Contacts"
+            android:layout_marginTop="420dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:backgroundTint="@color/rich_blue"/>
     </LinearLayout>
 
     <LinearLayout

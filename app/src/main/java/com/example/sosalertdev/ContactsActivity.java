@@ -3,12 +3,20 @@ package com.example.sosalertdev;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 
-public class ContactsActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
 
     ImageButton homeBtn;
     ImageButton settingsBtn;
@@ -16,6 +24,11 @@ public class ContactsActivity extends AppCompatActivity {
     ImageButton newsBtn;
     ImageButton mapsBtn;
     ImageButton weatherBtn;
+
+    MyContactAdapter dataAdapter = null;
+    ListView listView;
+    Button btnGetContacts;
+    List<ContactsInfo> contactsInfoList;
 
 
     @Override
@@ -29,6 +42,9 @@ public class ContactsActivity extends AppCompatActivity {
         newsBtn = (ImageButton) findViewById(R.id.newsBtn);
         mapsBtn = (ImageButton) findViewById(R.id.mapsBtn);
         weatherBtn = (ImageButton) findViewById(R.id.weatherBtn);
+        listView = (ListView) findViewById(R.id.list_view);
+
+        btnGetContacts = (Button) findViewById(R.id.searchButton);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,5 +94,57 @@ public class ContactsActivity extends AppCompatActivity {
             }
         });
 
+        btnGetContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getContacts();
+            }
+        });
+
     }
+
+    private void getContacts(){
+        ContentResolver contentResolver = getContentResolver();
+        String contactId = null;
+        String displayName = null;
+        ArrayList<ContactsInfo> contactsInfoList = new ArrayList<ContactsInfo>();
+        Cursor cursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+                int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
+                if (hasPhoneNumber > 0) {
+
+                    ContactsInfo contactsInfo = new ContactsInfo();
+                    contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    displayName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+
+                    contactsInfo.setContactId(contactId);
+                    contactsInfo.setDisplayName(displayName);
+
+                    Cursor phoneCursor = getContentResolver().query(
+                            ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                            new String[]{contactId},
+                            null);
+
+                    if (phoneCursor.moveToNext()) {
+                        String phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+                        contactsInfo.setPhoneNumber(phoneNumber);
+                    }
+
+                    phoneCursor.close();
+
+                    contactsInfoList.add(contactsInfo);
+                }
+            }
+        }
+        cursor.close();
+
+        dataAdapter = new MyContactAdapter(getApplicationContext(), R.layout.contact_info, contactsInfoList);
+        listView.setAdapter(dataAdapter);
+    }
+
+
 }

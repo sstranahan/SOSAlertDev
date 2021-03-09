@@ -3,6 +3,7 @@ package com.example.sosalertdev;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -152,7 +153,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .position(poi.latLng)
                         .title(poi.name));
 
-                poiMarker.showInfoWindow();
+                //TODO: Make website for POI appear when POI marker clicked
+
+                Intent myIntent = new Intent(Intent.ACTION_VIEW);
+                myIntent.setData(Uri.parse("geo:" + poi.latLng.latitude + "," + poi.latLng.longitude));
             }
         });
 

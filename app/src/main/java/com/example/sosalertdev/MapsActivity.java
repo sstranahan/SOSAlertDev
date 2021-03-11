@@ -104,6 +104,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    // TODO: Try using Google Places SDK to get POI information to display
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;

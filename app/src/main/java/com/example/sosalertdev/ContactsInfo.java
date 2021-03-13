@@ -4,6 +4,24 @@ public class ContactsInfo {
     private String contactId;
     private String displayName;
     private String phoneNumber;
+    private boolean selected;
+    private boolean removeSelected;
+
+    public boolean isRemoveSelected() {
+        return removeSelected;
+    }
+
+    public void setRemoveSelected(boolean removeSelected) {
+        this.removeSelected = removeSelected;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
     public String getContactId() {
         return contactId;

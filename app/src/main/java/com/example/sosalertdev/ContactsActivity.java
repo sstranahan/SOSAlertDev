@@ -26,15 +26,24 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
     ImageButton weatherBtn;
 
     MyContactAdapter dataAdapter = null;
+    MyContactAdapter2 dataAdapter2 = null;
     ListView listView;
+    ListView listView2;
+
     Button btnGetContacts;
+    Button btnDispContacts;
     List<ContactsInfo> contactsInfoList;
+    static ArrayList<ContactsInfo> contactsDispList;
+
+    static List<ContactsInfo> contactListStat;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+        contactsDispList = new ArrayList<>();
 
         homeBtn = (ImageButton) findViewById(R.id.homeBtn);
         settingsBtn = (ImageButton) findViewById(R.id.settingsBtn);
@@ -43,8 +52,10 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
         mapsBtn = (ImageButton) findViewById(R.id.mapsBtn);
         weatherBtn = (ImageButton) findViewById(R.id.weatherBtn);
         listView = (ListView) findViewById(R.id.list_view);
+        listView2 = (ListView) findViewById(R.id.list_view2);
 
         btnGetContacts = (Button) findViewById(R.id.searchButton);
+        btnDispContacts = (Button) findViewById(R.id.displayButton);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +112,13 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
             }
         });
 
+        btnDispContacts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displContacts();
+            }
+        });
+
     }
 
     private void getContacts(){
@@ -144,6 +162,23 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
 
         dataAdapter = new MyContactAdapter(getApplicationContext(), R.layout.contact_info, contactsInfoList);
         listView.setAdapter(dataAdapter);
+
+
+        contactListStat = contactsInfoList;
+    }
+
+    private void displContacts() {
+        contactsDispList.clear();
+        if (contactListStat!=null) {
+            for (int i = 0; i < contactListStat.size(); i++) {
+                if (contactListStat.get(i).isSelected()) {
+                    contactsDispList.add(contactListStat.get(i));
+                }
+            }
+
+        }
+        dataAdapter2 = new MyContactAdapter2(getApplicationContext(), R.layout.contact_info, contactsDispList);
+        listView2.setAdapter(dataAdapter2);
     }
 
 

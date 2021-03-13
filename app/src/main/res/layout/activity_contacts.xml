@@ -24,28 +24,23 @@
         android:shadowDy="4"
         android:shadowRadius="4" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="Enter Contact Name Below" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="483dp"
+        android:layout_height="500dp"
         android:orientation="vertical">
 
         <ListView
 
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="472dp"
-            android:layout_marginBottom="75dp"
-            android:id="@+id/list_view"/>
+            android:layout_height="314dp" />
+
+        <ListView
+
+            android:id="@+id/list_view2"
+            android:layout_width="match_parent"
+            android:layout_height="259dp"
+            android:layout_marginBottom="75dp" />
 
 
     </LinearLayout>
@@ -59,6 +54,16 @@
         android:layout_marginRight="20dp"
         android:backgroundTint="@color/rich_blue"
         android:text="Get Contacts" />
+
+    <Button
+        android:id="@+id/displayButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/rich_blue"
+        android:text="Update Emergency Contacts" />
 
     <LinearLayout
         android:layout_width="match_parent"

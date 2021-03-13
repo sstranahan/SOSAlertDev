@@ -1,26 +1,23 @@
 package com.example.sosalertdev;
-import android.content.Context;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyContactAdapter extends ArrayAdapter {
+public class MyContactAdapter2 extends ArrayAdapter {
 
     private List contactsInfoList;
     private Context context;
 
-    public <MyCustomAdapter> MyContactAdapter(Context context, int resource, ArrayList<ContactsInfo> contactsInfoList) {
+    public <MyCustomAdapter> MyContactAdapter2(Context context, int resource, ArrayList<ContactsInfo> contactsInfoList) {
         super(context, resource, contactsInfoList);
         this.contactsInfoList = contactsInfoList;
         this.context = context;
@@ -51,11 +48,7 @@ public class MyContactAdapter extends ArrayAdapter {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                       ContactsInfo contact = (ContactsInfo) ContactsActivity.contactListStat.get(position);
-                       contact.setSelected(true);
-                    } else {
-                        ContactsInfo contact = (ContactsInfo) ContactsActivity.contactListStat.get(position);
-                        contact.setSelected(false);
+                       ContactsActivity.contactListStat.remove(contactsInfoList.get(position));
                     }
                 }
             });

@@ -3,7 +3,6 @@ package com.example.sosalertdev;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -11,7 +10,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
 import android.telephony.SmsManager;
@@ -130,14 +128,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sosBtn.setOnClickListener(new View.OnClickListener() {
+        sosBtn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onLongClick(View v) {
                 if (ContactsActivity.contactListStat != null && MainActivity.sosText != "") {
+                    // Simulated text - cannot send text through phone native SMS without real SIM card
+
+                    for (int i = 0; i < ContactsActivity.contactsDispList.size(); i++) {
+                        String contName = null;
+                        String contNum = null;
+
+                        contName = ContactsActivity.contactsDispList.get(i).getDisplayName();
+                        contNum = ContactsActivity.contactsDispList.get(i).getPhoneNumber();
+
+                        Toast.makeText(MainActivity.this, "Simulated text message to recipient: " + contName + " Phone: " + contNum + "\n" + MainActivity.sosText , Toast.LENGTH_LONG).show();
+                    }
+
+
 
                 } else {
                     errorTxtView.setText("Error: Either contact hasn't been selected or message has not been defined.");
                 }
+                return true;
             }
         });
     }

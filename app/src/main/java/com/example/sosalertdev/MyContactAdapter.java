@@ -47,21 +47,25 @@ public class MyContactAdapter extends ArrayAdapter {
             holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
             convertView.setTag(holder);
 
-            holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked) {
-                       ContactsInfo contact = (ContactsInfo) ContactsActivity.contactListStat.get(position);
-                       contact.setSelected(true);
-                    } else {
-                        ContactsInfo contact = (ContactsInfo) ContactsActivity.contactListStat.get(position);
-                        contact.setSelected(false);
-                    }
-                }
-            });
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+
+
         }
+            holder = (ViewHolder) convertView.getTag();
+
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    ContactsInfo contact = (ContactsInfo) ContactsActivity.contactListStat.get(position);
+                    contact.setSelected(true);
+                } else {
+                    ContactsInfo contact = (ContactsInfo) ContactsActivity.contactListStat.get(position);
+                    contact.setSelected(false);
+                }
+            }
+        });
+
 
         //TODO: seems like contacts are not being displayed in position order
 

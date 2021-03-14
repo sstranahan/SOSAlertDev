@@ -32,7 +32,7 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
 
     Button btnGetContacts;
     Button btnDispContacts;
-    List<ContactsInfo> contactsInfoList;
+
     static ArrayList<ContactsInfo> contactsDispList;
 
     static List<ContactsInfo> contactListStat;
@@ -163,7 +163,6 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
         dataAdapter = new MyContactAdapter(getApplicationContext(), R.layout.contact_info, contactsInfoList);
         listView.setAdapter(dataAdapter);
 
-
         contactListStat = contactsInfoList;
     }
 
@@ -175,8 +174,8 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
                     contactsDispList.add(contactListStat.get(i));
                 }
             }
-
         }
+
         dataAdapter2 = new MyContactAdapter2(getApplicationContext(), R.layout.contact_info, contactsDispList);
         listView2.setAdapter(dataAdapter2);
     }

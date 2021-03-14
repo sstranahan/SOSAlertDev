@@ -64,7 +64,7 @@
 
             android:id="@+id/list_view2"
             android:layout_width="match_parent"
-            android:layout_height="259dp"
+            android:layout_height="215dp"
             android:layout_marginBottom="75dp" />
 
 

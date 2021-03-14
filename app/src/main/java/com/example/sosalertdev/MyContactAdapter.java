@@ -63,6 +63,8 @@ public class MyContactAdapter extends ArrayAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        //TODO: seems like contacts are not being displayed in position order
+
         ContactsInfo contactsInfo = (ContactsInfo) contactsInfoList.get(position);
         holder.displayName.setText(contactsInfo.getDisplayName());
         holder.phoneNumber.setText(contactsInfo.getPhoneNumber());

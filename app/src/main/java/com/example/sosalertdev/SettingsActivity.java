@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.util.Set;
 
@@ -17,6 +20,11 @@ public class SettingsActivity extends AppCompatActivity {
     ImageButton newsBtn;
     ImageButton mapsBtn;
     ImageButton weatherBtn;
+
+    TextView textView;
+    EditText editText;
+
+    Button saveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,10 @@ public class SettingsActivity extends AppCompatActivity {
         newsBtn = (ImageButton) findViewById(R.id.newsBtn);
         mapsBtn = (ImageButton) findViewById(R.id.mapsBtn);
         weatherBtn = (ImageButton) findViewById(R.id.weatherBtn);
+
+        textView = (TextView) findViewById(R.id.sampleDisp);
+        editText = (EditText) findViewById(R.id.editText);
+        saveBtn = (Button) findViewById(R.id.saveBtn);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,5 +90,15 @@ public class SettingsActivity extends AppCompatActivity {
                 SettingsActivity.this.startActivity(intent);
             }
         });
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView.setText(editText.getText() + " Location:  Lat: " + MainActivity.getLatLng().latitude + "Lon: " + MainActivity.getLatLng().longitude);
+                MainActivity.sosText = editText.getText().toString() + " Location:  Lat: " + MainActivity.getLatLng().latitude + "Lon: " + MainActivity.getLatLng().longitude;
+            }
+        });
+
+
     }
 }

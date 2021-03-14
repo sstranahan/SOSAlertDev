@@ -27,7 +27,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="595dp"
-        android:orientation="vertical" />
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Please enter your custom SOS message below"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Sample SOS Message:"
+            android:layout_marginTop="50dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/sampleDisp"
+            android:layout_marginTop="50dp"/>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="350dp"
+            android:backgroundTint="@color/rich_blue"
+            android:text="Save Message" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

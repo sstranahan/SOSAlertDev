@@ -7,14 +7,18 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -42,12 +46,23 @@ public class MainActivity extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     public static LatLng latLng;
 
+    public static String sosText = "";
+
     ImageButton homeBtn;
     ImageButton settingsBtn;
     ImageButton contactsBtn;
     ImageButton newsBtn;
     ImageButton mapsBtn;
     ImageButton weatherBtn;
+
+    ImageButton sosBtn;
+
+    TextView errorTxtView;
+
+    SmsManager smsManager;
+
+
+
 
 
     @Override
@@ -65,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
         newsBtn = (ImageButton) findViewById(R.id.newsBtn);
         mapsBtn = (ImageButton) findViewById(R.id.mapsBtn);
         weatherBtn = (ImageButton) findViewById(R.id.weatherBtn);
+        sosBtn = (ImageButton) findViewById(R.id.sosButton);
+        errorTxtView = (TextView) findViewById(R.id.errorTxt);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +129,17 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivity(intent);
             }
         });
+
+        sosBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContactsActivity.contactListStat != null && MainActivity.sosText != "") {
+
+                } else {
+                    errorTxtView.setText("Error: Either contact hasn't been selected or message has not been defined.");
+                }
+            }
+        });
     }
 
     private void checkApiAvail() {
@@ -144,6 +172,12 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
         } else {
             Toast.makeText(MainActivity.this, "Background Location Permissions Available", Toast.LENGTH_SHORT).show();
+        }
+
+        if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
+        } else {
+            Toast.makeText(MainActivity.this, "SMS Permissions Available", Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -217,5 +251,26 @@ public class MainActivity extends AppCompatActivity {
 
     public static LatLng getLatLng () {
         return latLng;
+    }
+
+    public void sendSmsMessage(View view) {
+
+        for (int i = 0; i < ContactsActivity.contactListStat.size(); i++) {
+
+            String destinationAddress = ContactsActivity.contactListStat.get(i).getPhoneNumber();
+
+            String smsMessage = MainActivity.sosText;
+
+            // Set the service center address if needed, otherwise null.
+            String scAddress = null;
+            // Set pending intents to broadcast
+            // when message sent and when delivered, or set to null.
+            PendingIntent sentIntent = null, deliveryIntent = null;
+
+
+            smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(destinationAddress, scAddress, smsMessage,
+                    sentIntent, deliveryIntent);
+        }
     }
 }

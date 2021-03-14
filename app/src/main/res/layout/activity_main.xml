@@ -27,7 +27,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="595dp"
-        android:orientation="vertical" />
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/sosButton"
+            android:layout_width="247dp"
+            android:layout_height="222dp"
+            android:scaleX="1.0"
+            android:scaleY="1.0"
+            app:srcCompat="@drawable/sos_icon"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="140dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Press and hold button to send SOS message"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="40dp"/>
+
+        <TextView
+            android:id="@+id/errorTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="center_horizontal"
+            android:layout_marginTop="40dp"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -14,11 +14,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.squareup.picasso.Picasso;
+
+
+//TODO: Get feelslike and icon to appear
 
 public class WeatherFragment extends Fragment {
     Typeface weatherFont;
@@ -28,6 +33,11 @@ public class WeatherFragment extends Fragment {
     private TextView updatedField;
     private TextView currentTemperatureField;
     private TextView detailsField;
+
+    private TextView feelsLikeField;
+    private TextView humidityField;
+
+    private ImageView iconView;
 
     Handler handler;
 
@@ -47,9 +57,14 @@ public class WeatherFragment extends Fragment {
 
         currentTemperatureField = (TextView)rootView.findViewById(R.id.current_temperature_field);
 
+        feelsLikeField = (TextView)rootView.findViewById(R.id.feels_like_field);
+
+
         weatherIcon = (TextView)rootView.findViewById(R.id.weather_icon);
 
         detailsField = (TextView)rootView.findViewById(R.id.details_field);
+
+        iconView = (ImageView)rootView.findViewById(R.id.iconView);
 
 
         return rootView;
@@ -92,16 +107,22 @@ public class WeatherFragment extends Fragment {
                             "\n" + "Pressure: " + main.getString("pressure") + " hPa");
 
             currentTemperatureField.setText(
-                    String.format("%.2f", main.getDouble("temp"))+ " ℃");
+                    String.format("%.2f", main.getDouble("temp"))+ " \u00B0F");
+
+            feelsLikeField.setText(String.format("%.2f", "Feels like: " + main.getDouble("feels_like"))+ " \u00B0F");
+
 
             DateFormat df = DateFormat.getDateTimeInstance();
             String updatedOn = df.format(new Date(json.getLong("dt")*1000));
             updatedField.setText("Last update: " + updatedOn);
 
-       /*setWeatherIcon(details.getInt("id"),
-               json.getJSONObject("sys").getLong("sunrise") * 1000,
-               json.getJSONObject("sys").getLong("sunset") * 1000);
-        */
+            String icon = details.getString("icon");
+            String iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
+
+            Picasso.get().load(iconUrl).into(iconView);
+
+
+
         }catch(Exception e){
             Log.e("SimpleWeather", "Field not present in JSON Received");
         }

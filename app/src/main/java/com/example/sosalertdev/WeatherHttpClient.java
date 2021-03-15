@@ -18,7 +18,7 @@ public class WeatherHttpClient {
             double lat = MainActivity.getLatLng().latitude;
             double lon = MainActivity.getLatLng().longitude;
 
-            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=22b70b703283692f88de41d390c69d0c");
+            URL url = new URL("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=22b70b703283692f88de41d390c69d0c");
             HttpURLConnection connection =
                     (HttpURLConnection)url.openConnection();
 

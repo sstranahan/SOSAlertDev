@@ -55,14 +55,18 @@ public class MyContactAdapter2 extends ArrayAdapter {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    ContactsActivity.contactsDispList.remove(contactsInfoList.get(position));
+                    if (contactsInfoList.get(position)!=null) {
+                        ContactsActivity.contactsDispList.remove(contactsInfoList.get(position));
+                    }
                 }
             }
         });
 
-        ContactsInfo contactsInfo = (ContactsInfo) contactsInfoList.get(position);
-        holder.displayName.setText(contactsInfo.getDisplayName());
-        holder.phoneNumber.setText(contactsInfo.getPhoneNumber());
+        if (contactsInfoList.get(position)!=null) {
+            ContactsInfo contactsInfo = (ContactsInfo) contactsInfoList.get(position);
+            holder.displayName.setText(contactsInfo.getDisplayName());
+            holder.phoneNumber.setText(contactsInfo.getPhoneNumber());
+        }
 
 
         return convertView;

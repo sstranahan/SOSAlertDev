@@ -168,10 +168,13 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
 
     private void displContacts() {
         contactsDispList.clear();
+        // getContacts();
         if (contactListStat!=null) {
             for (int i = 0; i < contactListStat.size(); i++) {
-                if (contactListStat.get(i).isSelected()) {
-                    contactsDispList.add(contactListStat.get(i));
+                if (contactListStat.get(i) != null) {
+                    if (contactListStat.get(i).isSelected()) {
+                        contactsDispList.add(contactListStat.get(i));
+                    }
                 }
             }
         }

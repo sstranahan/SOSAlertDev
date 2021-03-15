@@ -94,8 +94,8 @@ public class SettingsActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textView.setText(editText.getText() + " Location:  Lat: " + MainActivity.getLatLng().latitude + "Lon: " + MainActivity.getLatLng().longitude);
-                MainActivity.sosText = editText.getText().toString() + " Location:  Lat: " + MainActivity.getLatLng().latitude + "Lon: " + MainActivity.getLatLng().longitude;
+                textView.setText(editText.getText() + " Location:  Lat: " + MainActivity.getLatLng().latitude + " Lon: " + MainActivity.getLatLng().longitude);
+                MainActivity.sosText = editText.getText().toString() + " Location:  Lat: " + MainActivity.getLatLng().latitude + " Lon: " + MainActivity.getLatLng().longitude;
             }
         });
 

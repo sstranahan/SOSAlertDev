@@ -59,10 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     SmsManager smsManager;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,8 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(MainActivity.this, "Simulated text message to recipient: " + contName + " Phone: " + contNum + "\n" + MainActivity.sosText , Toast.LENGTH_LONG).show();
                     }
-
-
 
                 } else {
                     errorTxtView.setText("Error: Either contact hasn't been selected or message has not been defined.");

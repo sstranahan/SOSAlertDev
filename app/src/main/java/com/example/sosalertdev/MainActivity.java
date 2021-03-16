@@ -138,6 +138,10 @@ public class MainActivity extends AppCompatActivity {
                         contNum = ContactsActivity.contactsDispList.get(i).getPhoneNumber();
 
                         Toast.makeText(MainActivity.this, "Simulated text message to recipient: " + contName + " Phone: " + contNum + "\n" + MainActivity.sosText , Toast.LENGTH_LONG).show();
+
+                        //    Real SMS message would be sent here
+                        //    SmsManager smsManager = SmsManager.getDefault();
+                        //    smsManager.sendTextMessage(contNum, null, MainActivity.sosText, null, null );
                     }
 
                 } else {
@@ -272,7 +276,6 @@ public class MainActivity extends AppCompatActivity {
             // Set pending intents to broadcast
             // when message sent and when delivered, or set to null.
             PendingIntent sentIntent = null, deliveryIntent = null;
-
 
             smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(destinationAddress, scAddress, smsMessage,

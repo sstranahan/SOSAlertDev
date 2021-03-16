@@ -118,12 +118,12 @@ public class WeatherFragment extends Fragment {
             updatedField.setText("Last update: " + updatedOn);
 
             String icon = details.getString("icon");
-            String iconUrl = "https://openweathermap.org/img/w/" + icon + ".png";
+            String iconUrl = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
 
            Picasso.get().load(iconUrl).into(iconView);
 
 
-        }catch(Exception e){
+        } catch(Exception e){
             e.printStackTrace();
         }
     }

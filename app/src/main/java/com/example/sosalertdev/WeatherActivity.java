@@ -11,6 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
+// TODO: Pretty up weather layout
 
 public class WeatherActivity extends AppCompatActivity {
 

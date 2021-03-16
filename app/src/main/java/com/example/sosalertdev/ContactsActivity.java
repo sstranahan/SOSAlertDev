@@ -9,7 +9,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -181,6 +183,28 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
 
         dataAdapter2 = new MyContactAdapter2(getApplicationContext(), R.layout.contact_info, contactsDispList);
         listView2.setAdapter(dataAdapter2);
+
+        contactsBtn.performClick();
+    }
+
+    //recursive blind checks removal for everything inside a View
+    private void removeAllChecks(ViewGroup vg) {
+        View v = null;
+        for(int i = 0; i < vg.getChildCount(); i++){
+            try {
+                v = vg.getChildAt(i);
+                ((CheckBox)v).setChecked(false);
+            }
+            catch(Exception e1){ //if not checkBox, null View, etc
+                try {
+                    removeAllChecks((ViewGroup)v);
+                }
+                catch(Exception e2){ //v is not a view group
+                    continue;
+                }
+            }
+        }
+
     }
 
 

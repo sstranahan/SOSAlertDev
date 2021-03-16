@@ -33,13 +33,15 @@
             android:id="@+id/sosButton"
             android:layout_width="247dp"
             android:layout_height="222dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="140dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
             android:scaleX="1.0"
             android:scaleY="1.0"
+            android:visibility="visible"
             app:srcCompat="@drawable/sos_icon"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_gravity="center"
-            android:layout_marginTop="140dp"/>
+            android:background="@android:color/transparent" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

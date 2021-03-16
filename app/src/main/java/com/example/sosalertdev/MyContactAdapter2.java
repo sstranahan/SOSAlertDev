@@ -26,8 +26,7 @@ public class MyContactAdapter2 extends ArrayAdapter {
     private class ViewHolder {
         TextView displayName;
         TextView phoneNumber;
-        CheckBox checkBox;
-        TextView rmvText;
+
     }
 
     @Override
@@ -42,8 +41,7 @@ public class MyContactAdapter2 extends ArrayAdapter {
             holder = new ViewHolder();
             holder.displayName = (TextView) convertView.findViewById(R.id.displayName);
             holder.phoneNumber = (TextView) convertView.findViewById(R.id.phoneNumber);
-            holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
-            holder.rmvText = (TextView) convertView.findViewById(R.id.rmvText);
+
             convertView.setTag(holder);
 
 
@@ -51,16 +49,6 @@ public class MyContactAdapter2 extends ArrayAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    if (contactsInfoList.get(position)!=null) {
-                        ContactsActivity.contactsDispList.remove(contactsInfoList.get(position));
-                    }
-                }
-            }
-        });
 
         if (contactsInfoList.get(position)!=null) {
             ContactsInfo contactsInfo = (ContactsInfo) contactsInfoList.get(position);

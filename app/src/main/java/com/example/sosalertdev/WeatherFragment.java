@@ -7,6 +7,7 @@ import java.util.Locale;
 import org.json.JSONObject;
 
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -64,7 +65,7 @@ public class WeatherFragment extends Fragment {
 
         detailsField = (TextView)rootView.findViewById(R.id.details_field);
 
-        iconView = (ImageView)rootView.findViewById(R.id.iconView);
+       iconView = (ImageView)rootView.findViewById(R.id.imageView);
 
 
         return rootView;
@@ -109,7 +110,7 @@ public class WeatherFragment extends Fragment {
             currentTemperatureField.setText(
                     String.format("%.2f", main.getDouble("temp"))+ " \u00B0F");
 
-            feelsLikeField.setText(String.format("%.2f", "Feels like: " + main.getDouble("feels_like"))+ " \u00B0F");
+            feelsLikeField.setText( "Feels like: " + String.format("%.02f",main.getDouble("feels_like")) + " \u00B0F");
 
 
             DateFormat df = DateFormat.getDateTimeInstance();
@@ -117,14 +118,13 @@ public class WeatherFragment extends Fragment {
             updatedField.setText("Last update: " + updatedOn);
 
             String icon = details.getString("icon");
-            String iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
+            String iconUrl = "https://openweathermap.org/img/w/" + icon + ".png";
 
-            Picasso.get().load(iconUrl).into(iconView);
-
+           Picasso.get().load(iconUrl).into(iconView);
 
 
         }catch(Exception e){
-            Log.e("SimpleWeather", "Field not present in JSON Received");
+            e.printStackTrace();
         }
     }
 

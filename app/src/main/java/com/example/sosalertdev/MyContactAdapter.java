@@ -52,6 +52,8 @@ public class MyContactAdapter extends ArrayAdapter {
         }
             holder = (ViewHolder) convertView.getTag();
 
+
+
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override

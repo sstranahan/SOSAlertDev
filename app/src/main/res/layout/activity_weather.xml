@@ -34,8 +34,7 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="MergeRootFrame"
-            android:background="@color/grey_blue" />
+            tools:ignore="MergeRootFrame" />
 
     </LinearLayout>
 

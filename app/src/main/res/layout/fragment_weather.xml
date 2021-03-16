@@ -39,8 +39,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
         android:layout_centerHorizontal="true"
+        android:text="test text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/rich_blue"
+        android:shadowColor="@color/black"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="4" />
 
     <TextView
         android:id="@+id/current_temperature_field"
@@ -49,7 +55,12 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:textColor="@color/rich_blue"
+        android:shadowColor="@color/black"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="4" />
 
 
     <TextView
@@ -62,7 +73,7 @@
         />
 
     <ImageView
-        android:id="@+id/iconView"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/weather_icon"
@@ -71,11 +82,15 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="193dp"
-        android:layout_marginLeft="193dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="194dp"
-        android:layout_marginRight="194dp"
-        android:layout_marginBottom="97dp" />
+        android:layout_marginStart="143dp"
+        android:layout_marginLeft="143dp"
+        android:layout_marginTop="73dp"
+        android:layout_marginEnd="140dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginBottom="69dp"
+        tools:src="@drawable/weather"
+        android:scaleX="3.0"
+        android:scaleY="3.0"/>
+
 
 </RelativeLayout>

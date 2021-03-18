@@ -12,6 +12,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// Custom ListView adapter for emergency contacts view
+// Does not require checkbox - contact will be removed from list if unchecked in main contacts
+// listview and update button pressed
 public class MyContactAdapter2 extends ArrayAdapter {
 
     private List contactsInfoList;
@@ -44,11 +48,9 @@ public class MyContactAdapter2 extends ArrayAdapter {
 
             convertView.setTag(holder);
 
-
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
 
         if (contactsInfoList.get(position)!=null) {
             ContactsInfo contactsInfo = (ContactsInfo) contactsInfoList.get(position);

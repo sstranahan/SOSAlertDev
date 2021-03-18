@@ -34,6 +34,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
+// TODO: Implement defaulr SOS message
+
 public class MainActivity extends AppCompatActivity {
 
     private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
@@ -44,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private LocationRequest mLocationRequest;
     public static LatLng latLng;
 
-    public static String sosText = "";
+    public static String sosText = "Emergency message from SOSAlert App - ";
+
+    public static boolean locSetFlag = false;
 
     ImageButton homeBtn;
     ImageButton settingsBtn;
@@ -124,11 +128,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        // Will send simulated SOS message when SOS button is long clicked
+        // Real SMS message cannot be sent without physical SIM card - those calls are included
+        // but commented. Emergency contacts are retrieved from static list in ContactsActivity class
         sosBtn.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 if (ContactsActivity.contactListStat != null && MainActivity.sosText != "") {
                     // Simulated text - cannot send text through phone native SMS without real SIM card
+
+
+                    if (!locSetFlag) {
+                        sosText += " Location:  Lat: " + MainActivity.getLatLng().latitude + " Lon: " + MainActivity.getLatLng().longitude;
+                        locSetFlag = true;
+                    }
+
 
                     for (int i = 0; i < ContactsActivity.contactsDispList.size(); i++) {
                         String contName = null;
@@ -139,13 +154,12 @@ public class MainActivity extends AppCompatActivity {
 
                         Toast.makeText(MainActivity.this, "Simulated text message to recipient: " + contName + " Phone: " + contNum + "\n" + MainActivity.sosText , Toast.LENGTH_LONG).show();
 
-                        //    Real SMS message would be sent here
-                        //    SmsManager smsManager = SmsManager.getDefault();
-                        //    smsManager.sendTextMessage(contNum, null, MainActivity.sosText, null, null );
+                        //    -- Real SMS message would be sent here --
+                        //    sendSmsMessage(findViewById(R.id.main));
                     }
 
                 } else {
-                    errorTxtView.setText("Error: Either contact hasn't been selected or message has not been defined.");
+                    errorTxtView.setText("Error: Emergency contact hasn't been selected.");
                 }
                 return true;
             }
@@ -169,25 +183,25 @@ public class MainActivity extends AppCompatActivity {
         if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
-            Toast.makeText(MainActivity.this, "Fine Location Permissions Available", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Fine Location Permissions Available", Toast.LENGTH_SHORT).show();
         }
 
         if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         } else {
-            Toast.makeText(MainActivity.this, "Coarse Location Permissions Available", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Coarse Location Permissions Available", Toast.LENGTH_SHORT).show();
         }
 
         if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, 1);
         } else {
-            Toast.makeText(MainActivity.this, "Background Location Permissions Available", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Background Location Permissions Available", Toast.LENGTH_SHORT).show();
         }
 
         if(ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.SEND_SMS}, 1);
         } else {
-            Toast.makeText(MainActivity.this, "SMS Permissions Available", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "SMS Permissions Available", Toast.LENGTH_SHORT).show();
         }
 
     }

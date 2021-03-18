@@ -47,6 +47,7 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
 
         contactsDispList = new ArrayList<>();
 
+        // Attach views
         homeBtn = (ImageButton) findViewById(R.id.homeBtn);
         settingsBtn = (ImageButton) findViewById(R.id.settingsBtn);
         contactsBtn = (ImageButton) findViewById(R.id.contactsBtn);
@@ -123,6 +124,8 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
 
     }
 
+    // Use cursor and ContentResolver class to retrieve contacts from phone
+    // stored in static array list upon completion - for access by MyContactAdapter class
     private void getContacts(){
         ContentResolver contentResolver = getContentResolver();
         String contactId = null;
@@ -162,12 +165,16 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
         }
         cursor.close();
 
+        // Attach listview adapter
         dataAdapter = new MyContactAdapter(getApplicationContext(), R.layout.contact_info, contactsInfoList);
         listView.setAdapter(dataAdapter);
 
+        // Copy to static list
         contactListStat = contactsInfoList;
     }
 
+
+    // Copy all selected contacts into emergency contacts listView
     private void displContacts() {
         contactsDispList.clear();
         // getContacts();
@@ -184,6 +191,7 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
         dataAdapter2 = new MyContactAdapter2(getApplicationContext(), R.layout.contact_info, contactsDispList);
         listView2.setAdapter(dataAdapter2);
 
+        // Reset contacts view
         contactsBtn.performClick();
     }
 

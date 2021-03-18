@@ -15,6 +15,10 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+// Custom ListView adapter for contacts view - checking contact will add them to emergency contacts
+// static array list in ContactsActivity class
 public class MyContactAdapter extends ArrayAdapter {
 
     private List contactsInfoList;
@@ -47,15 +51,14 @@ public class MyContactAdapter extends ArrayAdapter {
             holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkbox);
             convertView.setTag(holder);
 
-
-
         }
             holder = (ViewHolder) convertView.getTag();
 
-
-
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
+            // On contact item checked - will set selected property of contact true
+            // When (in ContactsActivity) emergency contacts view is built
+            // all selected contacts will be displayed
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
@@ -67,9 +70,6 @@ public class MyContactAdapter extends ArrayAdapter {
                 }
             }
         });
-
-
-        //TODO: seems like contacts are not being displayed in position order
 
         ContactsInfo contactsInfo = (ContactsInfo) contactsInfoList.get(position);
         holder.displayName.setText(contactsInfo.getDisplayName());

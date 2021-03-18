@@ -21,6 +21,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// Custom listview adapter for news view
 public class MyListViewAdapter extends ArrayAdapter<NewsItem> implements View.OnClickListener {
 
     private ArrayList<NewsItem> dataSet;
@@ -40,13 +42,6 @@ public class MyListViewAdapter extends ArrayAdapter<NewsItem> implements View.On
         ImageView image;
         TextView url;
     }
-
-//    public void CustomAdapter(ArrayList<NewsItem> data, Context context) {
-//        super(context, R.layout.my_text_view, data);
-//        this.dataSet = data;
-//        this.mContext=context;
-//
-//    }
 
     @Override
     public void onClick(View v) {
@@ -93,6 +88,7 @@ public class MyListViewAdapter extends ArrayAdapter<NewsItem> implements View.On
             result=convertView;
         }
 
+        // Load animation layouts
         Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
         result.startAnimation(animation);
         lastPosition = position;
@@ -104,34 +100,8 @@ public class MyListViewAdapter extends ArrayAdapter<NewsItem> implements View.On
         viewHolder.image.setTag(position);
         viewHolder.url.setText(newsItem.getUrl());
 
-//        viewHolder.url.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View arg0) {
-//                browser = new Intent(Intent.ACTION_VIEW, Uri.parse(newsItem.getUrl()));
-//                ClickURLActivity urlAct = new ClickURLActivity(browser, getContext());
-//                urlAct.startActivity(browser);
-//            }
-//        });
-        // Return the completed view to render on screen
         return convertView;
     }
-
-//    class ClickURLActivity extends AppCompatActivity {
-//        Intent intent;
-//        Context context;
-//
-//        public ClickURLActivity(Intent intent, Context context) {
-//            this.intent = intent;
-//            this.context = context;
-//        }
-//
-//        @Override
-//        public void startActivity(Intent intent) {
-//            super.startActivity(intent);
-//        }
-//    }
-
 }
 
 

@@ -20,9 +20,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
+import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.util.Arrays;
@@ -42,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
 
+    public static Place clickedPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,42 +174,49 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 Marker poiMarker = mMap.addMarker(new MarkerOptions()
                         .position(poi.latLng)
                         .title(poi.name));
-//
-//                String poiId = poi.placeId;
-//
-//
-//                Places.initialize(getApplicationContext(), "AIzaSyC1iES0hZiF_kSe3jqFSZ15gBsFxWZL6es");
-//
-//                // Create a new PlacesClient instance
-//                PlacesClient placesClient = Places.createClient(getApplicationContext());
-//
-//                // Specify the fields to return.
-//                final List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME,
-//                        Place.Field.ADDRESS, Place.Field.PHONE_NUMBER,
-//                        Place.Field.OPENING_HOURS, Place.Field.WEBSITE_URI);
-//
-//                final FetchPlaceRequest request = FetchPlaceRequest.newInstance(poiId, placeFields);
-//
-//                placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
-//                    Place place = response.getPlace();
-//
-//                    Log.i(TAG, "Place found: " + place.getName());
-//
-//                    MyPlace myPlace = new MyPlace(place.getId(), place.getName(), place.getAddress(),
-//                            place.getPhoneNumber(), place.getOpeningHours(), place.getWebsiteUri());
-//
-//                    Intent intent = new Intent(MapsActivity.this,PlacesActivity.class);
-//                    intent.putExtra("place", (Parcelable) myPlace);
-//
-//                }).addOnFailureListener((exception) -> {
-//                    if (exception instanceof ApiException) {
-//                        final ApiException apiException = (ApiException) exception;
-//                        Log.e(TAG, "Place not found: " + exception.getMessage());
-//                        final int statusCode = apiException.getStatusCode();
-//                        // TODO: Handle error with given status code.
-//                    }
-//                    exception.printStackTrace();
-//                });
+
+                String poiId = poi.placeId;
+
+
+                Places.initialize(getApplicationContext(), "AIzaSyC1iES0hZiF_kSe3jqFSZ15gBsFxWZL6es");
+
+                // Create a new PlacesClient instance
+                PlacesClient placesClient = Places.createClient(getApplicationContext());
+
+                // Specify the fields to return.
+                final List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME,
+                        Place.Field.ADDRESS, Place.Field.PHONE_NUMBER,
+                        Place.Field.OPENING_HOURS, Place.Field.WEBSITE_URI);
+
+                final FetchPlaceRequest request = FetchPlaceRequest.newInstance(poiId, placeFields);
+
+
+
+                Task<FetchPlaceResponse> placeTask = placesClient.fetchPlace(request);
+
+
+                placeTask.addOnSuccessListener((response) -> {
+                    Place place = response.getPlace();
+                    clickedPlace = place;
+
+                    System.out.println("Place found!!!!");
+                    Log.i(TAG, "Place found: " + place.getName());
+
+                    MyPlace myPlace = new MyPlace(place.getId(), place.getName(), place.getAddress(),
+                            place.getPhoneNumber(), place.getOpeningHours(), place.getWebsiteUri());
+
+                    Intent intent = new Intent(MapsActivity.this,PlacesActivity.class);
+                    MapsActivity.this.startActivity(intent);
+
+                }).addOnFailureListener((exception) -> {
+                    if (exception instanceof ApiException) {
+                        final ApiException apiException = (ApiException) exception;
+                        Log.e(TAG, "Place not found: " + exception.getMessage());
+                        final int statusCode = apiException.getStatusCode();
+                        // TODO: Handle error with given status code.
+                    }
+                    exception.printStackTrace();
+                });
 
                 //TODO: Make website for POI appear when POI marker clicked
 

@@ -21,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SOSAlertDev">
-        <activity android:name=".WeatherActivity"></activity>
+        <activity android:name=".PlacesActivity"></activity>
+        <activity android:name=".WeatherActivity" />
         <activity android:name=".NewsActivity" />
         <activity android:name=".ContactsActivity" />
         <activity android:name=".SettingsActivity" />

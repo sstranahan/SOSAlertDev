@@ -5,9 +5,13 @@ import androidx.fragment.app.FragmentActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -16,6 +20,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPlaceRequest;
+import com.google.android.libraries.places.api.net.PlacesClient;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static android.content.ContentValues.TAG;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -149,19 +163,55 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void setPoiClick(final GoogleMap map) {
 
+
+
         map.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
             @Override
             public void onPoiClick(PointOfInterest poi) {
                 Marker poiMarker = mMap.addMarker(new MarkerOptions()
                         .position(poi.latLng)
                         .title(poi.name));
+//
+//                String poiId = poi.placeId;
+//
+//
+//                Places.initialize(getApplicationContext(), "AIzaSyC1iES0hZiF_kSe3jqFSZ15gBsFxWZL6es");
+//
+//                // Create a new PlacesClient instance
+//                PlacesClient placesClient = Places.createClient(getApplicationContext());
+//
+//                // Specify the fields to return.
+//                final List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME,
+//                        Place.Field.ADDRESS, Place.Field.PHONE_NUMBER,
+//                        Place.Field.OPENING_HOURS, Place.Field.WEBSITE_URI);
+//
+//                final FetchPlaceRequest request = FetchPlaceRequest.newInstance(poiId, placeFields);
+//
+//                placesClient.fetchPlace(request).addOnSuccessListener((response) -> {
+//                    Place place = response.getPlace();
+//
+//                    Log.i(TAG, "Place found: " + place.getName());
+//
+//                    MyPlace myPlace = new MyPlace(place.getId(), place.getName(), place.getAddress(),
+//                            place.getPhoneNumber(), place.getOpeningHours(), place.getWebsiteUri());
+//
+//                    Intent intent = new Intent(MapsActivity.this,PlacesActivity.class);
+//                    intent.putExtra("place", (Parcelable) myPlace);
+//
+//                }).addOnFailureListener((exception) -> {
+//                    if (exception instanceof ApiException) {
+//                        final ApiException apiException = (ApiException) exception;
+//                        Log.e(TAG, "Place not found: " + exception.getMessage());
+//                        final int statusCode = apiException.getStatusCode();
+//                        // TODO: Handle error with given status code.
+//                    }
+//                    exception.printStackTrace();
+//                });
 
                 //TODO: Make website for POI appear when POI marker clicked
 
-                Intent myIntent = new Intent(Intent.ACTION_VIEW);
-                myIntent.setData(Uri.parse("geo:" + poi.latLng.latitude + "," + poi.latLng.longitude));
             }
-        });
+            });
 
     }
 

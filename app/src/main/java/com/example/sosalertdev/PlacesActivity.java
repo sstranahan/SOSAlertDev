@@ -34,7 +34,10 @@ public class PlacesActivity extends AppCompatActivity {
 
         phoneNum.setText(MapsActivity.clickedPlace.getPhoneNumber());
 
-        hours.setText(MapsActivity.clickedPlace.getOpeningHours().toString());
+        if (MapsActivity.clickedPlace.getOpeningHours() != null) {
+            hours.setText(MapsActivity.clickedPlace.getOpeningHours().getWeekdayText().toString()
+                    .substring(1, MapsActivity.clickedPlace.getOpeningHours().getWeekdayText().toString().length() - 1));
+        }
 
         website.setText(MapsActivity.clickedPlace.getWebsiteUri().toString());
 

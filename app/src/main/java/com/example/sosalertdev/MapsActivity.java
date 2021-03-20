@@ -171,9 +171,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         map.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
             @Override
             public void onPoiClick(PointOfInterest poi) {
-                Marker poiMarker = mMap.addMarker(new MarkerOptions()
-                        .position(poi.latLng)
-                        .title(poi.name));
+            //    Marker poiMarker = mMap.addMarker(new MarkerOptions()
+            //            .position(poi.latLng)
+            //            .title(poi.name));
 
                 String poiId = poi.placeId;
 

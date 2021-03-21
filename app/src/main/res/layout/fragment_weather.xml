@@ -12,6 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/rich_blue"
+        android:shadowColor="@color/black"
+        android:shadowDx="4"
+        android:shadowDy="4"
+        android:shadowRadius="4"
+        android:textSize="32sp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -37,16 +43,16 @@
         android:id="@+id/feels_like_field"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="480dp"
         android:layout_centerHorizontal="true"
-        android:text="test text"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="20sp"
+        android:textSize="28sp"
         android:textColor="@color/rich_blue"
         android:shadowColor="@color/black"
         android:shadowDx="4"
         android:shadowDy="4"
         android:shadowRadius="4" />
+
 
     <TextView
         android:id="@+id/current_temperature_field"
@@ -54,14 +60,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="40sp"
-        android:textColor="@color/rich_blue"
+        android:layout_marginBottom="15dp"
         android:shadowColor="@color/black"
         android:shadowDx="4"
         android:shadowDy="4"
-        android:shadowRadius="4" />
-
+        android:shadowRadius="4"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/rich_blue"
+        android:textSize="46sp" />
 
     <TextView
         android:id="@+id/details_field"
@@ -84,13 +90,13 @@
         android:layout_alignParentRight="true"
         android:layout_marginStart="143dp"
         android:layout_marginLeft="143dp"
-        android:layout_marginTop="73dp"
+        android:layout_marginTop="99dp"
         android:layout_marginEnd="140dp"
         android:layout_marginRight="140dp"
-        android:layout_marginBottom="69dp"
-        tools:src="@drawable/weather"
+        android:layout_marginBottom="42dp"
         android:scaleX="3.0"
-        android:scaleY="3.0"/>
+        android:scaleY="3.0"
+        tools:src="@drawable/weather" />
 
 
 </RelativeLayout>

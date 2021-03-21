@@ -1,78 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout11"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
+    android:background="@color/grey_blue"
     android:orientation="vertical"
-    android:background="@color/grey_blue">
+    tools:context=".SettingsActivity">
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="68dp"
-        android:layout_gravity="center"
-        android:fontFamily="@font/unlock"
-        android:text="@string/title_activity_settings"
-        android:textColor="@color/rich_blue"
-        android:textSize="50sp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/unlock"
         android:shadowColor="@color/black"
         android:shadowDx="4"
         android:shadowDy="4"
-        android:shadowRadius="4" />
+        android:shadowRadius="4"
+        android:text="@string/title_activity_settings"
+        android:textColor="@color/rich_blue"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="595dp"
-        android:orientation="vertical" >
+        android:id="@+id/linearLayout12"
+        android:layout_width="368dp"
+        android:layout_height="590dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="Please enter your custom SOS message below"/>
+            android:text="Please enter your custom SOS message below" />
 
         <EditText
+            android:id="@+id/editText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"/>
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
-            android:text="Sample SOS Message:"
-            android:layout_marginTop="50dp"/>
+            android:text="Sample SOS Message:" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:id="@+id/sampleDisp"
-            android:layout_marginTop="50dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:gravity="center_horizontal" />
 
         <Button
             android:id="@+id/saveBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="350dp"
+            android:layout_marginTop="330dp"
             android:backgroundTint="@color/rich_blue"
             android:text="Save Message" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
+        android:id="@+id/linearLayout13"
+        android:layout_width="388dp"
+        android:layout_height="43dp"
         android:gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp">
 
 
         <ImageButton
@@ -118,4 +128,4 @@
             app:srcCompat="@drawable/icons8cloud24" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

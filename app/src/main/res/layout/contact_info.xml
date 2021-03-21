@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+    android:id="@+id/linearLayout17">
 
     <TextView
         android:id="@+id/displayName"
@@ -11,7 +12,10 @@
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:textStyle="bold"
-        />
+        tools:layout_conversion_absoluteHeight="29dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="10dp" />
 
 
     <TextView
@@ -19,13 +23,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        />
+        tools:layout_conversion_absoluteHeight="29dp"
+        tools:layout_editor_absoluteY="29dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="10dp" />
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        >
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_editor_absoluteY="59dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_conversion_absoluteWidth="48dp">
         <CheckBox android:layout_height="wrap_content"
                   android:layout_width="wrap_content"
                   android:id="@+id/checkbox"/>

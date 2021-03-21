@@ -1,70 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ContactsActivity"
+    android:background="@color/grey_blue"
     android:orientation="vertical"
-    android:background="@color/grey_blue">
+    tools:context=".ContactsActivity">
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="68dp"
-        android:layout_gravity="center"
-        android:fontFamily="@font/unlock"
-        android:text="@string/title_activity_contacts"
-        android:textColor="@color/rich_blue"
-        android:textSize="34sp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/unlock"
         android:shadowColor="@color/black"
         android:shadowDx="4"
         android:shadowDy="4"
-        android:shadowRadius="4" />
+        android:shadowRadius="4"
+        android:text="@string/title_activity_contacts"
+        android:textColor="@color/rich_blue"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:id="@+id/linearLayout3"
+        android:layout_width="361dp"
+        android:layout_height="520dp"
         android:orientation="vertical"
-        >
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/rich_blue">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Your Contacts"
-            android:gravity="center_horizontal"/>
+            android:background="@color/rich_blue"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Your Contacts" />
         </LinearLayout>
 
         <ListView
 
             android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="244dp" />
+            android:layout_height="240dp"
+            android:layout_marginLeft="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/rich_blue">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Emergency Contacts"
-            android:gravity="center_horizontal"/>
+            android:background="@color/rich_blue"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Emergency Contacts" />
         </LinearLayout>
 
         <ListView
 
             android:id="@+id/list_view2"
-            android:layout_width="match_parent"
-            android:layout_height="215dp"
+            android:layout_width="351dp"
+            android:layout_height="191dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginBottom="75dp" />
 
 
@@ -72,32 +84,40 @@
 
     <Button
         android:id="@+id/searchButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:backgroundTint="@color/rich_blue"
-        android:text="Get Contacts" />
+        android:text="Get Contacts"
+        app:layout_constraintBottom_toTopOf="@+id/displayButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.555" />
 
     <Button
         android:id="@+id/displayButton"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:backgroundTint="@color/rich_blue"
-        android:text="Update Emergency Contacts" />
+        android:text="Update Emergency Contacts"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchButton"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
+        android:id="@+id/linearLayout4"
+        android:layout_width="395dp"
+        android:layout_height="44dp"
         android:gravity="bottom"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp">
 
 
         <ImageButton
@@ -143,4 +163,4 @@
             app:srcCompat="@drawable/icons8cloud24" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

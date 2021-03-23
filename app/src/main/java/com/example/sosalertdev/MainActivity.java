@@ -34,7 +34,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
-// TODO: Implement defaulr SOS message
+// Grader Notes: Try clicking a place in google map view, try setting custom SOS message in settings view
+
+// Must select an emergency contact in contacts view for message to send
+
+// Please add some contacts to your AVD if using emulator
+
+// SOS Message is shown in a toast - actual messages require a real sim card
+
+// Try clicking links
+
+// News and weather data retrieved as JSON from APIs
+
 
 public class MainActivity extends AppCompatActivity {
 

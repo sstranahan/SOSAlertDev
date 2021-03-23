@@ -54,7 +54,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.302"
-            app:srcCompat="@drawable/sos_icon" />
+            app:srcCompat="@drawable/sos_icon"
+            android:defaultFocusHighlightEnabled="true"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -73,7 +74,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="" />
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/sosButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout

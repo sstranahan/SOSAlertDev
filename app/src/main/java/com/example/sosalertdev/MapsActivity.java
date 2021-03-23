@@ -3,12 +3,14 @@ package com.example.sosalertdev;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
@@ -22,7 +24,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.PhotoMetadata;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.FetchPhotoRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceRequest;
 import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
@@ -31,7 +35,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
-
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -43,6 +46,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageButton weatherBtn;
 
     private GoogleMap mMap;
+
+    ImageView photo;
+    static Bitmap photoBitmap;
+
+
 
     public static Place clickedPlace;
 
@@ -146,8 +154,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         LatLng placeLocation = null;
 
-
-
         while (placeLocation == null) {
             placeLocation = MainActivity.getLatLng();
         }
@@ -165,8 +171,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void setPoiClick(final GoogleMap map) {
-
-
 
         map.setOnPoiClickListener(new GoogleMap.OnPoiClickListener() {
             @Override
@@ -186,14 +190,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // Specify the fields to return.
                 final List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME,
                         Place.Field.ADDRESS, Place.Field.PHONE_NUMBER,
-                        Place.Field.OPENING_HOURS, Place.Field.WEBSITE_URI);
+                        Place.Field.OPENING_HOURS, Place.Field.WEBSITE_URI, Place.Field.PHOTO_METADATAS, Place.Field.RATING, Place.Field.BUSINESS_STATUS);
 
                 final FetchPlaceRequest request = FetchPlaceRequest.newInstance(poiId, placeFields);
 
-
-
                 Task<FetchPlaceResponse> placeTask = placesClient.fetchPlace(request);
-
 
                 placeTask.addOnSuccessListener((response) -> {
                     Place place = response.getPlace();
@@ -202,8 +203,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     System.out.println("Place found!!!!");
                     Log.i(TAG, "Place found: " + place.getName());
 
-                    MyPlace myPlace = new MyPlace(place.getId(), place.getName(), place.getAddress(),
-                            place.getPhoneNumber(), place.getOpeningHours(), place.getWebsiteUri());
 
                     Intent intent = new Intent(MapsActivity.this,PlacesActivity.class);
                     MapsActivity.this.startActivity(intent);
@@ -217,13 +216,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                     exception.printStackTrace();
                 });
-
-                //TODO: Make website for POI appear when POI marker clicked
-
             }
             });
-
     }
-
-
 }

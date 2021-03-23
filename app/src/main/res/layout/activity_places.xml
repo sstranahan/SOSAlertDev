@@ -53,7 +53,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/place_add" />
+        app:layout_constraintTop_toBottomOf="@+id/place_add"
+        android:linksClickable="true"
+        android:autoLink="phone"/>
+
+    <ImageView
+        android:id="@+id/photo_view"
+        android:layout_width="169dp"
+        android:layout_height="148dp"
+        app:layout_constraintBottom_toTopOf="@+id/place_hours"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place_phone"
+        app:layout_constraintVertical_bias="0.444" />
+
+    <TextView
+        android:id="@+id/place_hours"
+        android:layout_width="377dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="264dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place_phone" />
 
     <TextView
         android:id="@+id/place_website"
@@ -68,14 +93,23 @@
         app:layout_constraintTop_toBottomOf="@+id/place_hours" />
 
     <TextView
-        android:id="@+id/place_hours"
-        android:layout_width="377dp"
-        android:layout_height="123dp"
-        android:layout_marginTop="148dp"
-        android:gravity="center_horizontal"
-        android:textColor="@color/black"
+        android:id="@+id/open_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/place_hours"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/place_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/photo_view" />
+
+    <TextView
+        android:id="@+id/rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/place_website"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/place_hours"
+        app:layout_constraintVertical_bias="0.831" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

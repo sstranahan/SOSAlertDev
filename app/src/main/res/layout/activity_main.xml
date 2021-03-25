@@ -43,6 +43,7 @@
             android:layout_width="312dp"
             android:layout_height="329dp"
             android:adjustViewBounds="true"
+            android:foreground="@drawable/button"
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:scaleX="1.0"
@@ -53,9 +54,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.302"
-            app:srcCompat="@drawable/sos_icon"
-            android:defaultFocusHighlightEnabled="true"/>
+            app:layout_constraintVertical_bias="0.302" />
 
         <TextView
             android:id="@+id/textView2"

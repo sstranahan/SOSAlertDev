@@ -212,8 +212,5 @@ public class ContactsActivity<MyCustomAdapter> extends AppCompatActivity {
                 }
             }
         }
-
     }
-
-
 }

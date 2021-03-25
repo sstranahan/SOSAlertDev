@@ -87,12 +87,6 @@ public class PlacesActivity extends AppCompatActivity {
         photo.setScaleX((float)1.8);
         photo.setScaleY((float)1.8);
 
-        //bitmap = (Bitmap) getIntent().getParcelableExtra("Bitmap");
-
-        //System.out.println(bitmap.toString());
-
-        //photo.setImageBitmap(bitmap);
-
         rating.setText("Rating: " + ratingDbl);
 
         name.setText(MapsActivity.clickedPlace.getName());
@@ -107,6 +101,5 @@ public class PlacesActivity extends AppCompatActivity {
         }
 
         website.setText(MapsActivity.clickedPlace.getWebsiteUri().toString());
-
     }
 }

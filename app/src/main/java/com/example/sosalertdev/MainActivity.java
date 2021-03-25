@@ -34,6 +34,29 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import static com.google.android.gms.location.LocationServices.getFusedLocationProviderClient;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// SOSAlert App - Author: Stephen Stranahan
+// ECE 435 - Midterm Android App Project - Prof. Paul Watta
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// This is an android app which will serve to provide SOS emergency contact services, news, traffic,
+// weather, map data. The user can select one or more emergency contacts from their android device's
+// native contacts list, define (or use default) SOS message, and press a button which will
+// send their emergency contact(s) their defined SOS message and location (lat & long). Note: an
+// actual SMS message cannot be sent using an emulated device, (no SIM card), so the simulated
+// message will appear in a toast.
+
+// News is implemented using NYTimes news api HTTPS calls, and retrieved as JSON. The news
+// ticker is currently configured to show all top headlines for the US.
+
+// The maps service is implemented using Google Maps and Google Places SDKs. Places are clickable,
+// and will display a custom activity with the details of the place, including a clickable website
+// link.
+
+// The weather service is implemented using the open weather map api and is displayed in a custom
+// view.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Grader Notes: Try clicking a place in google map view, try setting custom SOS message in settings view
 
 // Must select an emergency contact in contacts view for message to send
@@ -149,12 +172,10 @@ public class MainActivity extends AppCompatActivity {
                 if (ContactsActivity.contactListStat != null && MainActivity.sosText != "") {
                     // Simulated text - cannot send text through phone native SMS without real SIM card
 
-
                     if (!locSetFlag) {
                         sosText += " Location:  Lat: " + MainActivity.getLatLng().latitude + " Lon: " + MainActivity.getLatLng().longitude;
                         locSetFlag = true;
                     }
-
 
                     for (int i = 0; i < ContactsActivity.contactsDispList.size(); i++) {
                         String contName = null;
@@ -218,7 +239,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Trigger new location updates at interval
-// Trigger new location updates at interval
     @SuppressLint("MissingPermission")
     protected void startLocationUpdates() {
 
@@ -242,7 +262,6 @@ public class MainActivity extends AppCompatActivity {
         getFusedLocationProviderClient(getApplicationContext()).requestLocationUpdates(mLocationRequest, new LocationCallback() {
                     @Override
                     public void onLocationResult(LocationResult locationResult) {
-                        // do work here
                         onLocationChanged(locationResult.getLastLocation());
                     }
                 },
@@ -251,11 +270,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onLocationChanged(Location location) {
         // New location has now been determined
-//        String msg = "Updated Location: " +
-//                Double.toString(location.getLatitude()) + "," +
-//                Double.toString(location.getLongitude());
-//        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-        // You can now create a LatLng Object for use with maps
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
     }
 
@@ -282,7 +296,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
     public static LatLng getLatLng () {
         return latLng;

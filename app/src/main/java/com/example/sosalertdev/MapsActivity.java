@@ -50,8 +50,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ImageView photo;
     static Bitmap photoBitmap;
 
-
-
     public static Place clickedPlace;
 
     @Override
@@ -181,12 +179,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 String poiId = poi.placeId;
 
-
                 Places.initialize(getApplicationContext(), "AIzaSyC1iES0hZiF_kSe3jqFSZ15gBsFxWZL6es");
-
                 // Create a new PlacesClient instance
                 PlacesClient placesClient = Places.createClient(getApplicationContext());
-
                 // Specify the fields to return.
                 final List<Place.Field> placeFields = Arrays.asList(Place.Field.ID, Place.Field.NAME,
                         Place.Field.ADDRESS, Place.Field.PHONE_NUMBER,
@@ -203,7 +198,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     System.out.println("Place found!!!!");
                     Log.i(TAG, "Place found: " + place.getName());
 
-
+                    // Build places view when place clicked
                     Intent intent = new Intent(MapsActivity.this,PlacesActivity.class);
                     MapsActivity.this.startActivity(intent);
 

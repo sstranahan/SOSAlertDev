@@ -63,10 +63,9 @@ import static com.google.android.gms.location.LocationServices.getFusedLocationP
 
 // Please add some contacts to your AVD if using emulator
 
-// SOS Message is shown in a toast - actual messages require a real sim card
+// SOS Message is shown in a textview - actual messages require a real sim card
 
 // Try clicking links
-
 // News and weather data retrieved as JSON from APIs
 
 
@@ -94,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton sosBtn;
 
     TextView errorTxtView;
+    TextView msgView;
 
     SmsManager smsManager;
 
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         weatherBtn = (ImageButton) findViewById(R.id.weatherBtn);
         sosBtn = (ImageButton) findViewById(R.id.sosButton);
         errorTxtView = (TextView) findViewById(R.id.errorTxt);
+        msgView = (TextView) findViewById(R.id.demo_msg);
 
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,7 +185,9 @@ public class MainActivity extends AppCompatActivity {
                         contName = ContactsActivity.contactsDispList.get(i).getDisplayName();
                         contNum = ContactsActivity.contactsDispList.get(i).getPhoneNumber();
 
-                        Toast.makeText(MainActivity.this, "Simulated text message to recipient: " + contName + " Phone: " + contNum + "\n" + MainActivity.sosText , Toast.LENGTH_LONG).show();
+                        // Toast.makeText(MainActivity.this, "Simulated text message to recipient: " + contName + " Phone: " + contNum + "\n" + MainActivity.sosText , Toast.LENGTH_LONG).show();
+
+                        msgView.setText("Simulated text message to recipient:\n" + contName + " Phone: " + contNum + "\n" + MainActivity.sosText);
 
                         //    -- Real SMS message would be sent here --
                         //    sendSmsMessage(findViewById(R.id.main));
